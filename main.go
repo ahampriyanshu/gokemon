@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"html/template"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
-
+	"strconv"
+	"github.com/mtslzr/pokeapi-go"
 	"github.com/joho/godotenv"
 )
 	
@@ -26,13 +28,13 @@ import (
 	
 		params := u.Query()
 		searchQuery := params.Get("q")
-		page := params.Get("page")
-		if page == "" {
-			page = "1"
+		if searchQuery == "" {
+			searchQuery =strconv.Itoa(rand.Intn(500 - 1) + 1) 
 		}
-	
-		fmt.Println("Search Query is: ", searchQuery)
-		fmt.Println("Page is: ", page)
+		pokedata, err := pokeapi.Pokemon(searchQuery)
+		fmt.Println("Search Query is: ", pokedata)
+
+
 	}
 
 	func main() {
@@ -45,7 +47,6 @@ import (
 		if port == "" {
 			port = "3000"
 		}
-	
 
 		fs := http.FileServer(http.Dir("assets"))
 		mux := http.NewServeMux()
