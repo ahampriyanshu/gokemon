@@ -1,123 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Gokemon</title>
-    <link rel="stylesheet" href="/assets/css/tailwind.min.css" />
-  </head>
-  <body class="bg-gray-100">
-    <style>
-        dialog[open] {
-        animation: appear .15s cubic-bezier(0, 1.8, 1, 1.8);
-      }
-      
-        dialog::backdrop {
-          background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
-          backdrop-filter: blur(3px);
-        }
-        
-       
-      @keyframes appear {
-        from {
-          opacity: 0;
-          transform: translateX(-3rem);
-        }
-      
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      } 
-      </style>  
-      <div class="container w-full md:max-w-3xl mx-auto">
-        <div class="flex justify-center mt-4">
-            <img class="rounded-full" src="assets/img/gokemon.png" alt="Avatar" />
-          </div>
-      <div class="p-8">
-        <form action="/search" method="GET">
-        <div class="bg-white flex items-center rounded-lg shadow-xl">
-          <input autofocus
-          placeholder="Enter the name of pokemon"
-          type="search"
-          name="q"
-           class="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
-            id="search" type="text" placeholder="Search">
-          <div class="p-2 md:p-4">
-            <button class="rounded-full  focus:outline-none w-12 h-12 md:w-12 md:h-12 flex items-center justify-center">
-                <img src="/assets/img/pokeball.png" alt="Avatar" />
-            </button>
-            </div>
-          </div>
-           </form>
-        </div>
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Gokemon</title>
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
+   <meta name="author" content="ahampriyanshu" />
+   <meta name="description" content="PokeApi in Golang" />
+   <meta name="keywords" content="Gokemon,Open-Source,pwa,go,golang,workbox,tailwind2,ahampriyanshu,github" />
+   <link rel="stylesheet" href="/assets/css/tailwind.min.css" />
+   <link rel="stylesheet" href="/assets/css/style.css" />
+   <link rel="manifest" href="/manifest.json">
+   <link rel="apple-touch-icon" sizes="57x57" href="assests/img/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="assests/img/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="assests/img/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="assests/img/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="assests/img/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="assests/img/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="assests/img/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="assests/img/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="assests/img/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192" href="assests/img/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="assests/img/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="assests/img/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="assests/img/favicon-16x16.png">
+   <meta name="msapplication-TileImage" content="assests/img/ms-icon-144x144.png">
+   <link rel="shortcut-icon" href="assets/img/favicon-96x96.png">
+   <meta name="msapplication-TileColor" content="#f9fafb">
+   <meta name="theme-color" content="#E7F9CD6">
+   <meta name="theme-color" content="#E7F9CD6">
+</head>
 
-        
-        <div class="my-1 px-1 w-full md:w-1/2 md:my-2 md:px-2 flex flex-col justify-between lg:my-4 lg:px-4 lg:w-1/3">
-            <div class="text-center mt-4">
-              <p class="text-gray-600 font-bold">{{ .Name }}
-              </p>
-              <p class="text-sm font-hairline text-gray-600 mt-1">{{ .Type }}
-              </p>
-            </div>
-            <div class="flex justify-center mt-4">
-              <img class=" sm:w-12 sm:h-12 w-10 h-10 rounded-full" src="{{ .Avatar }}" alt="Avatar" />
-            </div>
-            <div class="mt-6 flex justify-between text-center">
-              <div>
-                <p class="text-gray-700 font-bold">{{.Experience}}
-                </p>
-                <p class="text-xs mt-2 text-gray-600 font-hairline">Experience
-                </p>
-              </div>
-              <div>
-                <p class="text-gray-700 font-bold">{{ .Height }}
-                </p>
-                <p class="text-xs mt-2 text-gray-600 font-hairline">Height
-                </p>
-              </div>
-              <div>
-                <p class="text-gray-700 font-bold">{{ .Weight }}
-                </p>
-                <p class="text-xs mt-2 text-gray-700 font-hairline">Weight
-                </p>
-              </div>
-            </div>
-            <div class="mt-6">
-                <!-- <section class=" flex h-screen w-screen p-10 justify-center items-start">
-                    <button class="py-3 px-10 bg-gray-800 text-white rounded text shadow-xl">Open</button>
-                  </section> -->
-              <button  onclick="document.getElementById('statsModal').showModal()" id="btn"
-               class="py-3 px-10 bg-gray-800 flex justify-center text-white rounded text shadow-xl">
-                Stats
-              </button>
-            </div>
-          </div>
+<body class="bg-gray-100">
+   <div class="container w-full md:max-w-3xl mx-auto flex flex-col min-h-screen">
 
-      <dialog id="statsModal" class="h-auto w-11/12 md:w-1/2 p-5  bg-white rounded-md ">     
-        <div class="flex flex-col w-full h-auto ">
-             <div class="flex w-full h-auto justify-center items-center">
-               <div class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
-                Pokemon's stats
-               </div>
-               <div onclick="document.getElementById('statsModal').close();" class="flex w-1/12 h-auto justify-center cursor-pointer">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-               </div>
-             </div>
-                <div class="flex w-full h-auto py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500">
-                 Moves bnd abilities
-               </div>
-            </div>
-     </dialog>  
+      <!-- Logo -->
 
-     <div>
-        <div class="flex pb-5 px-3 justify-center m-auto text-gray-800 text-sm flex-col
+      <a href="/" class="flex justify-center p-4 md:p-0 mt-10 md:mt-4">
+         <img class="rounded-full" src="assets/img/gokemon.png" alt="Logo" />
+      </a>
+
+      <div class="flex-grow">
+
+         <!-- Search Bar -->
+         <div class="pt-0 pb-5 md:pt-10 md:pb-5 mx-4">
+            <form action="/search" method="GET">
+               <div class="bg-white flex items-center rounded-lg shadow-md md:shadow-xl">
+                  <input autofocus placeholder="{{ .Name }}" type="search" name="q"
+                     class="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none" id="search"
+                     type="text" placeholder="Search">
+                  <div class="p-2 md:p-4">
+                     <button
+                        class="rounded-full focus:outline-none w-10 h-12 md:w-10 md:h-12 flex items-center justify-center">
+                        <img src="/assets/img/pokeball.png" alt="Avatar" />
+                     </button>
+                  </div>
+               </div>
+            </form>
+         </div>
+
+         <!-- Card -->
+         <div class="text-center mt-4">
+            <p style="font-family: PokeSolid;" class="text-2xl text-gray-600">{{ .Name }}
+            </p>
+            <p style="font-family: PokeHollow;" class="text-sm text-gray-600 mt-1">{{ .Type }}
+            </p>
+         </div>
+         <div class="flex justify-center mt-4">
+            <img class="w-24 h-24 rounded-full" src="{{ .Avatar }}" alt="Avatar" />
+         </div>
+         <div class="flex pb-5 justify-center flex-row space-x-8 md:space-x-24 mt-3 md:mt-6 text-center ">
+           
+            <div>
+               <p style="font-family: PokeHollow;" class="text-gray-700 font-bold">{{ .Height }}
+               </p>
+               <p style="font-family: PokeSolid;" class="text-xs mt-2 text-gray-600">Height
+               </p>
+            </div>
+            <div>
+               <p style="font-family: PokeHollow;" class="text-gray-700 font-bold">{{.Experience}}
+               </p>
+               <p style="font-family: PokeSolid;" class="text-xs mt-2 text-gray-600">Experience
+               </p>
+            </div>
+            <div>
+               <p style="font-family: PokeHollow;" class="text-gray-700 font-bold">{{ .Weight }}
+               </p>
+               <p style="font-family: PokeSolid;" class="text-xs mt-2 text-gray-700">Weight
+               </p>
+            </div>
+         </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex pb-5 px-3 justify-center m-auto text-gray-800 text-sm flex-col
            md:flex-row max-w-6xl">
-           <div class="flex justify-center mt-4">
-              <a href="/#" class="w-6 mx-1">
-                 <svg class="fill-current cursor-pointer text-gray-500 hover:text-gray-400" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
-                    <path id="Twitter" d="M24,12c0,6.627 -5.373,12 -12,12c-6.627,0 -12,-5.373 -12,-12c0,-6.627
+         <div class="flex justify-center mt-4">
+            <a href="https://twitter.com/ahampriyanshu" class="w-6 mx-1">
+               <svg class="fill-current cursor-pointer text-gray-500 hover:text-blue-400" width="100%" height="100%"
+                  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                  style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
+                  <path id="Twitter" d="M24,12c0,6.627 -5.373,12 -12,12c-6.627,0 -12,-5.373 -12,-12c0,-6.627
                        5.373,-12 12,-12c6.627,0 12,5.373 12,12Zm-6.465,-3.192c-0.379,0.168
                        -0.786,0.281 -1.213,0.333c0.436,-0.262 0.771,-0.676
                        0.929,-1.169c-0.408,0.242 -0.86,0.418 -1.341,0.513c-0.385,-0.411
@@ -131,22 +117,30 @@
                        -0.339,-0.01 -0.504,-0.03c0.934,0.599 2.044,0.949 3.237,0.949c3.883,0
                        6.007,-3.217 6.007,-6.008c0,-0.091 -0.002,-0.183 -0.006,-0.273c0.413,-0.298
                        0.771,-0.67 1.054,-1.093Z"></path>
-                 </svg>
-              </a>
-              <a href="/#" class="w-6 mx-1">
-                 <svg class="fill-current cursor-pointer text-gray-500 hover:text-gray-400" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
-                    <path id="Facebook" d="M24,12c0,6.627 -5.373,12 -12,12c-6.627,0 -12,-5.373 -12,-12c0,-6.627
-                       5.373,-12 12,-12c6.627,0 12,5.373
-                       12,12Zm-11.278,0l1.294,0l0.172,-1.617l-1.466,0l0.002,-0.808c0,-0.422
-                       0.04,-0.648 0.646,-0.648l0.809,0l0,-1.616l-1.295,0c-1.555,0 -2.103,0.784
-                       -2.103,2.102l0,0.97l-0.969,0l0,1.617l0.969,0l0,4.689l1.941,0l0,-4.689Z"></path>
-                 </svg>
-              </a>
-              <a href="/#" class="w-6 mx-1">
-                 <svg class="fill-current cursor-pointer text-gray-500 hover:text-gray-400" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
-                    <g id="Layer_1">
-                       <circle id="Oval" cx="12" cy="12" r="12"></circle>
-                       <path id="Shape" d="M19.05,8.362c0,-0.062 0,-0.125 -0.063,-0.187l0,-0.063c-0.187,-0.562
+               </svg>
+            </a>
+            <a href="http://www.github.com/ahampriyanshu" class="w-6 mx-1">
+               <svg class="fill-current cursor-pointer text-gray-500 hover:text-black" width="100%" height="100%"
+                  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                  style="
+               fill-rule: evenodd;
+               clip-rule: evenodd;
+               stroke-linejoin: round;
+               stroke-miterlimit: 2;
+             ">
+                  <path
+                     d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+               </svg>
+            </a>
+            <a href="mailto:ahampriyanshu@gmail.com?subject=Hello" class="w-6 mx-1">
+               <svg class="fill-current cursor-pointer text-gray-500 hover:text-red-500" width="100%" height="100%"
+                  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                  style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
+                  <g id="Layer_1">
+                     <circle id="Oval" cx="12" cy="12" r="12"></circle>
+                     <path id="Shape" d="M19.05,8.362c0,-0.062 0,-0.125 -0.063,-0.187l0,-0.063c-0.187,-0.562
                           -0.687,-0.937 -1.312,-0.937l0.125,0c0,0 -2.438,-0.375 -5.75,-0.375c-3.25,0
                           -5.75,0.375 -5.75,0.375l0.125,0c-0.625,0 -1.125,0.375
                           -1.313,0.937l0,0.063c0,0.062 0,0.125 -0.062,0.187c-0.063,0.625 -0.25,1.938
@@ -160,12 +154,15 @@
                           -0.204,-0.34l0,-4.631c0,-0.136 0.068,-0.273 0.204,-0.341c0.136,-0.068
                           0.272,-0.068 0.409,0l3.201,2.316c0.068,0.068 0.136,0.204
                           0.136,0.34c0.068,0.136 0,0.273 -0.136,0.341Z" style="fill: rgb(255, 255, 255);"></path>
-                    </g>
-                 </svg>
-              </a>
-              <a href="/#" class="w-6 mx-1">
-                 <svg class="fill-current cursor-pointer text-gray-500 hover:text-gray-400" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
-                    <path id="Shape" d="M7.3,0.9c1.5,-0.6 3.1,-0.9 4.7,-0.9c1.6,0 3.2,0.3 4.7,0.9c1.5,0.6 2.8,1.5
+                  </g>
+               </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ahampriyanshu/" class="w-6 mx-1">
+               <svg class="fill-current cursor-pointer text-gray-500 hover:text-blue-500" width="100%" height="100%"
+                  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                  style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
+                  <path id="Shape" d="M7.3,0.9c1.5,-0.6 3.1,-0.9 4.7,-0.9c1.6,0 3.2,0.3 4.7,0.9c1.5,0.6 2.8,1.5
                        3.8,2.6c1,1.1 1.9,2.3 2.6,3.8c0.7,1.5 0.9,3 0.9,4.7c0,1.7 -0.3,3.2
                        -0.9,4.7c-0.6,1.5 -1.5,2.8 -2.6,3.8c-1.1,1 -2.3,1.9 -3.8,2.6c-1.5,0.7
                        -3.1,0.9 -4.7,0.9c-1.6,0 -3.2,-0.3 -4.7,-0.9c-1.5,-0.6 -2.8,-1.5
@@ -179,21 +176,31 @@
                        -0.8,0.8 -0.9,1.3l-0.1,-1.3l-3,0l0.1,2l0,6.5l3,0l0,-4.5c0,-0.6 0.1,-1.1
                        0.4,-1.5c0.3,-0.4 0.6,-0.5 1.1,-0.5c0.5,0 0.9,0.2 1.1,0.5c0.2,0.3 0.4,0.8
                        0.4,1.5l0,4.5l2.9,0Z"></path>
-                 </svg>
-              </a>
-              <a href="/#" class="w-6 mx-1">
-                 <svg class="fill-current cursor-pointer text-gray-500 hover:text-gray-400" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
-                    <path id="Combined-Shape" d="M12,24c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12c-6.627,0
-                       -12,5.373 -12,12c0,6.627 5.373,12 12,12Zm6.591,-15.556l-0.722,0c-0.189,0
-                       -0.681,0.208 -0.681,0.385l0,6.422c0,0.178 0.492,0.323
-                       0.681,0.323l0.722,0l0,1.426l-4.675,0l0,-1.426l0.935,0l0,-6.655l-0.163,0l-2.251,8.081l-1.742,0l-2.222,-8.081l-0.168,0l0,6.655l0.935,0l0,1.426l-3.74,0l0,-1.426l0.519,0c0.203,0
-                       0.416,-0.145 0.416,-0.323l0,-6.422c0,-0.177 -0.213,-0.385
-                       -0.416,-0.385l-0.519,0l0,-1.426l4.847,0l1.583,5.704l0.042,0l1.598,-5.704l5.021,0l0,1.426Z"></path>
-                 </svg>
-              </a>
-           </div>
-        </div>
-     </div>
-    </div>
-  </body>
+               </svg>
+            </a>
+            <a href="https://www.instagram.com/ahampriyanshu/" class="w-6 mx-1">
+               <svg class="fill-current cursor-pointer text-gray-500 hover:text-pink-500" width="100%" height="100%"
+                  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                  style="
+               fill-rule: evenodd;
+               clip-rule: evenodd;
+               stroke-linejoin: round;
+               stroke-miterlimit: 2;
+             ">
+                  <path
+                     d="M14.829 6.302c-.738-.034-.96-.04-2.829-.04s-2.09.007-2.828.04c-1.899.087-2.783.986-2.87 2.87-.033.738-.041.959-.041 2.828s.008 2.09.041 2.829c.087 1.879.967 2.783 2.87 2.87.737.033.959.041 2.828.041 1.87 0 2.091-.007 2.829-.041 1.899-.086 2.782-.988 2.87-2.87.033-.738.04-.96.04-2.829s-.007-2.09-.04-2.828c-.088-1.883-.973-2.783-2.87-2.87zm-2.829 9.293c-1.985 0-3.595-1.609-3.595-3.595 0-1.985 1.61-3.594 3.595-3.594s3.595 1.609 3.595 3.594c0 1.985-1.61 3.595-3.595 3.595zm3.737-6.491c-.464 0-.84-.376-.84-.84 0-.464.376-.84.84-.84.464 0 .84.376.84.84 0 .463-.376.84-.84.84zm-1.404 2.896c0 1.289-1.045 2.333-2.333 2.333s-2.333-1.044-2.333-2.333c0-1.289 1.045-2.333 2.333-2.333s2.333 1.044 2.333 2.333zm-2.333-12c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.958 14.886c-.115 2.545-1.532 3.955-4.071 4.072-.747.034-.986.042-2.887.042s-2.139-.008-2.886-.042c-2.544-.117-3.955-1.529-4.072-4.072-.034-.746-.042-.985-.042-2.886 0-1.901.008-2.139.042-2.886.117-2.544 1.529-3.955 4.072-4.071.747-.035.985-.043 2.886-.043s2.14.008 2.887.043c2.545.117 3.957 1.532 4.071 4.071.034.747.042.985.042 2.886 0 1.901-.008 2.14-.042 2.886z" />
+               </svg>
+            </a>
+         </div>
+      </div>
+   </div>
+   <script>
+      if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('/sw.js')
+             .then(function() { console.log('Service Worker Registered'); });
+  }
+   </script>
+</body>
 </html>

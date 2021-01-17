@@ -43,6 +43,11 @@ import (
 
 		pokejson, err := pokeapi.Pokemon(searchQuery)
 
+		if err != nil {
+		pokejson,err = pokeapi.Pokemon( strconv.Itoa(rand.Intn(500 - 1) + 1))
+		}
+
+
 		pokedata := &Pokedata{
 			Query:        searchQuery,
 			Name:    	  strings.Title(pokejson.Name),
@@ -51,7 +56,6 @@ import (
 			Weight:       pokejson.Weight,
 			Avatar:  	  pokejson.Sprites.FrontDefault,
 			Type:		  pokejson.Types[0].Type.Name,
-			// Abilities:	  pokejson.Abilities[0],
 		}
 
 		buf := &bytes.Buffer{}
@@ -74,6 +78,8 @@ import (
 		if port == "" {
 			port = "3000"
 		}
+		pokeapi.ClearCache()
+		pokeapi.CacheSettings.UseCache = false
 
 		fs := http.FileServer(http.Dir("assets"))
 		mux := http.NewServeMux()

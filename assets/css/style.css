@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'PokeHollow';
+    src: url('PokeHollow.woff') format('woff'),
+     url('PokeHollow.ttf') format('truetype');
+  }  
+
+@font-face {
+    font-family: 'PokeSolid';
+    src: url('PokeSolid.woff') format('woff'),
+     url('PokeSolid.ttf') format('truetype');
+  }  
