@@ -1,12 +1,13 @@
+
 {
     "name": "Gokemon",
     "short_name": "Gokemon",
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
-    "background_color": "#E7F9CD6",
-    "theme_color": "#E7F9CD6",
-    "description": "PokeApi in Golang",
+    "background_color": "#FFE031",
+    "theme_color": "#FFE031",
+    "description": "PokeStats in Golang",
     "dir": "ltr",
     "lang": "en-US",
     "orientation": "portrait",

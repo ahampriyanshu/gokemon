@@ -14,10 +14,8 @@
 ## Setup
 
 ```bash
-
 git clone https://github.com/ahampriyanshu/gokemon.git && cd gokemon
 go build && ./gokemon
-
 ```
 
 * For deployment on heroku, click [here](https://devcenter.heroku.com/articles/getting-started-with-go)
@@ -30,4 +28,9 @@ go build && ./gokemon
 | Tailwind | 2.0 |
 | PokeAPI  | 2.0 |
 
-* Special thanks to [mtslzr](https://github.com/mtslzr) for providing [this](https://github.com/mtslzr/pokeapi-go) wrapper for PokeAPI2 written in Go.
+## Special thanks to
+
+* [mtslzr](https://github.com/mtslzr) for [this](https://github.com/mtslzr/pokeapi-go) awesome wrapper for PokeAPI2 written in Go.
+* [PokeAPI](https://pokeapi.co) all the Pokémon data you'll ever need in one place, easily accessible through a modern RESTful API.
+* [FlatIcon](http://www.flaticon.com/free-icon/sushi_187463#term=sushi&page=1&position=68) for all the wonderfull svg and png icons.
+* [Heroku](https://heroku.com) for hosting this project.

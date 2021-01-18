@@ -1,11 +1,1 @@
-@font-face {
-    font-family: 'PokeHollow';
-    src: url('PokeHollow.woff') format('woff'),
-     url('PokeHollow.ttf') format('truetype');
-  }  
-
-@font-face {
-    font-family: 'PokeSolid';
-    src: url('PokeSolid.woff') format('woff'),
-     url('PokeSolid.ttf') format('truetype');
-  }  
+@font-face{font-family:PokeHollow;src:url(PokeHollow.woff) format('woff'),url(PokeHollow.ttf) format('truetype')}@font-face{font-family:PokeSolid;src:url(PokeSolid.woff) format('woff'),url(PokeSolid.ttf) format('truetype')}.pokeball{-webkit-animation-name:spinner;animation-name:spinner;-webkit-animation-duration:6s;animation-duration:6s;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-timing-function:linear;animation-timing-function:linear}@-webkit-keyframes spinner{83.33%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spinner{83.33%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}dialog[open]{animation:appear .15s cubic-bezier(0,1.8,1,1.8)}dialog::backdrop{background:linear-gradient(45deg,rgba(0,0,0,.5),rgba(54,54,54,.5));backdrop-filter:blur(3px)}@keyframes appear{from{opacity:0;transform:translateX(-3rem)}to{opacity:1;transform:translateX(0)}}

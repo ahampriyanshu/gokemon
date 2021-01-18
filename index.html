@@ -7,16 +7,17 @@
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
    <title>Gokemon</title>
-   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
+   <meta name="msapplication-TileColor" content="#FFE031">
+   <meta name="theme-color" content="#FFE031">
    <meta name="author" content="ahampriyanshu" />
-   <meta name="description" content="PokeApi in Golang" />
-   <meta name="keywords" content="Gokemon,Open-Source,pwa,go,golang,workbox,tailwind2,ahampriyanshu,github" />
-   <link rel="stylesheet" href="/assets/css/tailwind.min.css" />
+   <meta name="description" content="PokeStats in Golang" />
+   <meta name="keywords" content="Gokemon,pwa,go,golang,workbox,tailwind2,ahampriyanshu,github" />
+   <meta name="msapplication-TileImage" content="assets/img/ms-icon-144x144.png">
+   <link rel="stylesheet" href="/assets/css/tailwind.css" />
    <link rel="stylesheet" href="/assets/css/style.css" />
+   <link rel="manifest" href="/manifest.json">
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
    <link rel="shortcut-icon" href="assets/img/favicon-96x96.png">
-   <meta name="msapplication-TileColor" content="#E7F9CD6">
-   <meta name="theme-color" content="#E7F9CD6">
-   <meta name="theme-color" content="#E7F9CD6">
    <link rel="apple-touch-icon" sizes="60x60" href="assets/img//apple-icon-60x60.png">
    <link rel="apple-touch-icon" sizes="72x72" href="assets/img//apple-icon-72x72.png">
    <link rel="apple-touch-icon" sizes="76x76" href="assets/img//apple-icon-76x76.png">
@@ -29,24 +30,15 @@
    <link rel="icon" type="image/png" sizes="32x32" href="assets/img//favicon-32x32.png">
    <link rel="icon" type="image/png" sizes="96x96" href="assets/img//favicon-96x96.png">
    <link rel="icon" type="image/png" sizes="16x16" href="assets/img//favicon-16x16.png">
-   <meta name="msapplication-TileImage" content="assets/img/ms-icon-144x144.png">
-   <link rel="manifest" href="/manifest.json">
 </head>
 
 <body class="bg-gray-100">
-   <script>
-      if ('serviceWorker' in navigator) {
-         navigator.serviceWorker
-            .register('sw.js')
-            .then(function () { console.log('Service Worker Registered'); });
-      }
-   </script>
    <div class="container w-full md:max-w-3xl mx-auto flex flex-col min-h-screen">
 
       <!-- Logo -->
 
       <a href="/" class="flex justify-center p-4 md:p-0 mt-10 md:mt-4">
-         <img class="rounded-full" src="assets/img/gokemon.png" alt="Logo" />
+         <img class="rounded-full gokemon" src="assets/img/gokemon.png" alt="GokemonLogo" />
       </a>
 
       <div class="flex-grow">
@@ -61,7 +53,7 @@
                   <div class="p-2 md:p-4">
                      <button
                         class="rounded-full focus:outline-none w-10 h-12 md:w-10 md:h-12 flex items-center justify-center">
-                        <img src="/assets/img/pokeball.png" alt="Avatar" />
+                        <img src="/assets/img/pokeball.png" class="pokeball" alt="pokeball" />
                      </button>
                   </div>
                </div>
@@ -76,7 +68,8 @@
             </p>
          </div>
          <div class="flex justify-center mt-4">
-            <img class="w-24 h-24 rounded-full" src="{{ .Avatar }}" alt="Avatar" />
+            <img onclick="document.getElementById('statsModal').showModal()" id="btn" class="w-24 h-24 rounded-full"
+               src="{{ .Avatar }}" alt="Avatar" />
          </div>
          <div class="flex pb-5 justify-center flex-row space-x-8 md:space-x-24 mt-3 md:mt-6 text-center ">
 
@@ -140,30 +133,6 @@
                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                </svg>
             </a>
-            <a href="mailto:ahampriyanshu@gmail.com?subject=Hello" class="w-6 mx-1">
-               <svg class="fill-current cursor-pointer text-gray-500 hover:text-red-500" width="100%" height="100%"
-                  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
-                  style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
-                  <g id="Layer_1">
-                     <circle id="Oval" cx="12" cy="12" r="12"></circle>
-                     <path id="Shape" d="M19.05,8.362c0,-0.062 0,-0.125 -0.063,-0.187l0,-0.063c-0.187,-0.562
-                          -0.687,-0.937 -1.312,-0.937l0.125,0c0,0 -2.438,-0.375 -5.75,-0.375c-3.25,0
-                          -5.75,0.375 -5.75,0.375l0.125,0c-0.625,0 -1.125,0.375
-                          -1.313,0.937l0,0.063c0,0.062 0,0.125 -0.062,0.187c-0.063,0.625 -0.25,1.938
-                          -0.25,3.438c0,1.5 0.187,2.812 0.25,3.437c0,0.063 0,0.125
-                          0.062,0.188l0,0.062c0.188,0.563 0.688,0.938 1.313,0.938l-0.125,0c0,0
-                          2.437,0.375 5.75,0.375c3.25,0 5.75,-0.375 5.75,-0.375l-0.125,0c0.625,0
-                          1.125,-0.375 1.312,-0.938l0,-0.062c0,-0.063 0,-0.125
-                          0.063,-0.188c0.062,-0.625 0.25,-1.937 0.25,-3.437c0,-1.5 -0.125,-2.813
-                          -0.25,-3.438Zm-4.634,3.927l-3.201,2.315c-0.068,0.068 -0.137,0.068
-                          -0.205,0.068c-0.068,0 -0.136,0 -0.204,-0.068c-0.136,-0.068 -0.204,-0.204
-                          -0.204,-0.34l0,-4.631c0,-0.136 0.068,-0.273 0.204,-0.341c0.136,-0.068
-                          0.272,-0.068 0.409,0l3.201,2.316c0.068,0.068 0.136,0.204
-                          0.136,0.34c0.068,0.136 0,0.273 -0.136,0.341Z" style="fill: rgb(255, 255, 255);"></path>
-                  </g>
-               </svg>
-            </a>
             <a href="https://www.linkedin.com/in/ahampriyanshu/" class="w-6 mx-1">
                <svg class="fill-current cursor-pointer text-gray-500 hover:text-blue-500" width="100%" height="100%"
                   viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +170,43 @@
             </a>
          </div>
       </div>
+      <dialog id="statsModal" class="h-auto w-11/12 md:w-1/2 p-5  bg-white rounded-md ">
+
+         <div class="flex flex-col w-full h-auto ">
+            <div class="flex w-full h-auto justify-center items-center">
+               <div style="font-family: PokeHollow;"
+                  class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
+                  Thank You
+               </div>
+               <div onclick="document.getElementById('statsModal').close();"
+                  class="flex w-1/12 h-auto justify-center cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-x">
+                     <line x1="18" y1="6" x2="6" y2="18"></line>
+                     <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+               </div>
+            </div>
+            <div style="font-family: PokeSolid"
+               class="flex font-bold w-full h-auto py-10 px-2 justify-center
+                 flex-col md:flex-row space-x-0 space-y-5 md:space-y-0 md:space-x-24 bg-gray-200 rounded text-center text-gray-700">
+               <a href="https://pokeapi.co/">
+                  PokeAPI
+               </a>
+               <a href="https://github.com/mtslzr">
+                  mtslzr
+               </a>
+               <a href="http://www.flaticon.com/free-icon/sushi_187463#term=sushi&page=1&position=68">
+                  FlatIcon
+               </a>
+               <a href="https://www.heroku.com/">
+                  Heroku
+               </a>
+            </div>
+         </div>
+      </dialog>
    </div>
 </body>
-
+<script src="/assets/js/script.js" type="text/javascript"></script>
 </html>

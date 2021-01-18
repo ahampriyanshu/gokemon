@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"html/template"
 	"log"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -12,19 +13,19 @@ import (
 	"strconv"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/joho/godotenv"
+	"time"
 )
 	
 	var tpl = template.Must(template.ParseFiles("index.html"))
 
 	type Pokedata struct {
-		Query      string
-		Name      string
+		Query       string
+		Name        string
 		Experience  int
 		Height      int
 		Weight      int
 		Avatar      string
 		Type		string
-		// Abilities   []struct
 	}
 	
 	func dataHandler(w http.ResponseWriter, r *http.Request) {
@@ -33,7 +34,7 @@ import (
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-	
+		rand.Seed(time.Now().UTC().UnixNano())
 		params := u.Query()
 		searchQuery := params.Get("q")
 		searchQuery = strings.ToLower(searchQuery) 
@@ -68,6 +69,26 @@ import (
 	buf.WriteTo(w)
 	}
 
+	func sendSW(w http.ResponseWriter, r *http.Request) {
+		data, err := ioutil.ReadFile("sw.js")
+		if err != nil {
+			http.Error(w, "Couldn't read file", http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/javascript; charset=utf-8")
+		w.Write(data)
+	}
+	
+	func sendManifest(w http.ResponseWriter, r *http.Request) {
+		data, err := ioutil.ReadFile("manifest.json")
+		if err != nil {
+			http.Error(w, "Couldn't read file", http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.Write(data)
+	}
+
 	func main() {
 		err := godotenv.Load()
 		if err != nil {
@@ -78,11 +99,11 @@ import (
 		if port == "" {
 			port = "3000"
 		}
-		pokeapi.ClearCache()
-		pokeapi.CacheSettings.UseCache = false
 
 		fs := http.FileServer(http.Dir("assets"))
 		mux := http.NewServeMux()
+		mux.HandleFunc("/sw.js", sendSW)
+		mux.HandleFunc("/manifest.json", sendManifest)
 		mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
 		mux.HandleFunc("/", dataHandler)
 		mux.HandleFunc("/search", dataHandler)
